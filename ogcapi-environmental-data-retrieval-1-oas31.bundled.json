@@ -2003,6 +2003,8 @@ components:
           type: string
           examples:
           - GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.01745329251994328,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]
+      description: 'A coordinate reference system object: either a well-known CRS identifier or a full
+        WKT2 definition.'
     DataQuery:
       description: Property to contain any extra metadata information that is specific to an individual
         data query
@@ -2056,6 +2058,7 @@ components:
           - position
           examples:
           - position
+      description: 'An EDR position query: the data of a collection at a single coordinate.'
     positionLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2066,6 +2069,7 @@ components:
           - https://example.com/collections/monitoringsites/position
         variables:
           $ref: '#/components/schemas/positionDataQuery'
+      description: A link to the results of an EDR position query.
     radiusDataQuery:
       allOf:
       - $ref: '#/components/schemas/DataQuery'
@@ -2085,6 +2089,7 @@ components:
           examples:
           - - km
             - miles
+      description: 'An EDR radius query: the data within a radius around a coordinate.'
     radiusLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2095,6 +2100,7 @@ components:
           - https://example.com/collections/monitoringsites/radius
         variables:
           $ref: '#/components/schemas/radiusDataQuery'
+      description: A link to the results of an EDR radius query.
     areaDataQuery:
       allOf:
       - $ref: '#/components/schemas/DataQuery'
@@ -2106,6 +2112,7 @@ components:
           - area
           examples:
           - area
+      description: 'An EDR area query: the data of a collection within a user-defined polygon area.'
     areaLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2116,6 +2123,7 @@ components:
           - https://example.com/collections/monitoringsites/area
         variables:
           $ref: '#/components/schemas/areaDataQuery'
+      description: A link to the results of an EDR area query.
     cubeDataQuery:
       allOf:
       - $ref: '#/components/schemas/DataQuery'
@@ -2137,6 +2145,8 @@ components:
           examples:
           - - m
             - hPa
+      description: 'An EDR cube query: the data of a collection within a user-defined 3-dimensional bounding
+        box.'
     cubeLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2147,6 +2157,7 @@ components:
           - https://example.com/collections/monitoringsites/cube
         variables:
           $ref: '#/components/schemas/cubeDataQuery'
+      description: A link to the results of an EDR cube query.
     trajectoryDataQuery:
       allOf:
       - $ref: '#/components/schemas/DataQuery'
@@ -2158,6 +2169,7 @@ components:
           - trajectory
           examples:
           - trajectory
+      description: 'An EDR trajectory query: the data along a user-defined trajectory.'
     trajectoryLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2168,6 +2180,7 @@ components:
           - https://example.com/collections/monitoringsites/trajectory
         variables:
           $ref: '#/components/schemas/trajectoryDataQuery'
+      description: A link to the results of an EDR trajectory query.
     corridorDataQuery:
       allOf:
       - $ref: '#/components/schemas/DataQuery'
@@ -2198,6 +2211,7 @@ components:
           examples:
           - - m
             - hPa
+      description: 'An EDR corridor query: the data along a user-defined path within a corridor width.'
     corridorLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2208,6 +2222,7 @@ components:
           - https://example.com/collections/monitoringsites/corridor
         variables:
           $ref: '#/components/schemas/corridorDataQuery'
+      description: A link to the results of an EDR corridor query.
     locationsDataQuery:
       allOf:
       - $ref: '#/components/schemas/DataQuery'
@@ -2219,6 +2234,7 @@ components:
           - locations
           examples:
           - locations
+      description: 'An EDR locations query: the data at predefined locations of the collection.'
     locationsLink:
       allOf:
       - $ref: '#/components/schemas/link'
@@ -2229,6 +2245,7 @@ components:
           - https://example.com/collections/monitoringsites/locations
         variables:
           $ref: '#/components/schemas/locationsDataQuery'
+      description: A link to the predefined locations of a collection.
     itemsDataQuery:
       description: Property to contain any extra metadata information that is specific to an individual
         data queries
@@ -2261,6 +2278,7 @@ components:
           - https://example.com/collections/monitoringsites/items
         variables:
           $ref: '#/components/schemas/itemsDataQuery'
+      description: A link to the items of a collection.
     instancesDataQuery:
       description: Property to contain any extra metadata information that is specific to an individual
         data queries
@@ -2293,6 +2311,7 @@ components:
           - https://example.com/collections/monitoringsites/instances
         variables:
           $ref: '#/components/schemas/instancesDataQuery'
+      description: A link to the instances of a collection.
     units:
       type: object
       title: unit name
@@ -2593,6 +2612,8 @@ components:
           additionalProperties:
             items:
               $ref: '#/components/schemas/parameterNames'
+      description: A collection available through this EDR API, with its parameter names, extents and
+        data queries.
     collections:
       type: object
       required:
@@ -2644,6 +2665,7 @@ components:
           minItems: 2
       required:
       - values
+      description: The base definition of a values axis of a collection domain.
     numericValuesAxis:
       description: Axis defined by list of numeric axis values and optional bounds
       allOf:
@@ -2755,6 +2777,7 @@ components:
           $ref: '#/components/schemas/i18n'
       required:
       - label
+      description: The concept or property an EDR query targets, identified by URI.
     referenceSystem:
       type: object
       properties:
@@ -2801,6 +2824,8 @@ components:
                   $ref: '#/components/schemas/targetConcept'
           required:
           - targetConcept
+      description: A coordinate reference system for the spatial or temporal axes, per the OGC Topic 2
+        model.
     referenceSystemConnection:
       description: 'Reference System Connection object: connects coordinates to reference systems'
       type: object
@@ -3472,6 +3497,8 @@ components:
       - $ref: '#/components/schemas/domainBase'
       - required:
         - referencing
+      description: 'The domain of a collection: the spatio-temporal axes over which its parameter values
+        are defined.'
     coverage:
       allOf:
       - $ref: '#/components/schemas/coverageBase'
@@ -3484,6 +3511,7 @@ components:
             then:
               required:
               - referencing
+      description: 'A coverage: the data of a collection over its domain, per the OGC CIS model.'
     coverageCollection:
       description: A collection of coverage objects
       properties:
@@ -4597,6 +4625,7 @@ components:
           minItems: 2
           items:
             type: number
+      description: A Point geometry serialized as GeoJSON.
     multipointGeoJSON:
       type: object
       required:
@@ -4614,6 +4643,7 @@ components:
             minItems: 2
             items:
               type: number
+      description: A MultiPoint geometry serialized as GeoJSON.
     linestringGeoJSON:
       type: object
       required:
@@ -4638,6 +4668,7 @@ components:
               maxItems: 4
               items:
                 type: number
+      description: A LineString geometry serialized as GeoJSON.
     multilinestringGeoJSON:
       type: object
       required:
@@ -4658,6 +4689,7 @@ components:
               minItems: 2
               items:
                 type: number
+      description: A MultiLineString geometry serialized as GeoJSON.
     polygonGeoJSON:
       type: object
       required:
@@ -4678,6 +4710,7 @@ components:
               minItems: 2
               items:
                 type: number
+      description: A Polygon geometry serialized as GeoJSON.
     multipolygonGeoJSON:
       type: object
       required:
@@ -4700,6 +4733,7 @@ components:
                 minItems: 2
                 items:
                   type: number
+      description: A MultiPolygon geometry serialized as GeoJSON.
     geometrycollectionGeoJSON:
       type: object
       required:
@@ -4720,6 +4754,7 @@ components:
             - $ref: '#/components/schemas/multilinestringGeoJSON'
             - $ref: '#/components/schemas/polygonGeoJSON'
             - $ref: '#/components/schemas/multipolygonGeoJSON'
+      description: A geometry collection serialized as GeoJSON.
     edrProperties:
       type: object
       title: EDR GeoJSON Properties
@@ -4804,6 +4839,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
+      description: An EDR feature serialized as GeoJSON.
     i18n-2:
       type: object
       description: Object representing an internationalised string.
@@ -4947,6 +4983,7 @@ components:
           $ref: '#/components/schemas/numberMatched'
         numberReturned:
           $ref: '#/components/schemas/numberReturned'
+      description: A collection of EDR features serialized as GeoJSON, with locations and parameter values.
     instances:
       type: object
       required:
@@ -4974,6 +5011,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/collection'
+      description: 'The instances of a collection: distinct realizations of the data, such as model run
+        dates.'
   responses:
     '200':
       description: Data ranges required to construct valid queries for the choosen data collection
